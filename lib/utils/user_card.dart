@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import '../constants/constants.dart';
 
 class UserCard extends StatelessWidget {
-  const UserCard({super.key});
+  const UserCard({
+    required this.name,
+    required this.phone,
+    required this.email,
+  });
+  final String name;
+  final String phone;
+  final String email;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +42,7 @@ class UserCard extends StatelessWidget {
             child: const Icon(
               Icons.account_box_rounded,
               size: 40,
-              color: kiconColor,
+              color:  kPrimaryColor,
             ),
           ),
           const SizedBox(
@@ -46,23 +53,23 @@ class UserCard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
-                  'Rasin Chungath',
+                  name,
                   style: ktextTitleSytle,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 3,
                 ),
                 Text(
-                  '9633970499',
+                  phone,
                   style: ktextSytle,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 1,
                 ),
                 Text(
-                  'rasincrazz@gmail.com',
+                  email,
                   style: ktextSytle,
                 ),
               ],
