@@ -34,7 +34,7 @@ class UserDetailScreen extends StatelessWidget {
               Container(
                 height: 560,
                 decoration: BoxDecoration(
-                  color: Color(0xFFF3F3F3),
+                  color: const Color(0xFFF3F3F3),
                   borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(40),
                     topLeft: Radius.circular(40),

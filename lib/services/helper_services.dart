@@ -7,8 +7,8 @@ class HelperServices {
 
   Future<List<User>> getUserDetails() async {
     var url = Uri.parse(uri);
-    var response = await client.get(url);
     try {
+      var response = await client.get(url);
       if (response.statusCode == 200) {
         var json = response.body;
         return userFromJson(json);

@@ -4,12 +4,12 @@ import '../constants/constants.dart';
 class UserCard extends StatelessWidget {
   const UserCard({
     required this.name,
-    required this.phone,
     required this.email,
+    required this.phone,
   });
   final String name;
-  final String phone;
   final String email;
+  final String phone;
 
   @override
   Widget build(BuildContext context) {
@@ -62,14 +62,14 @@ class UserCard extends StatelessWidget {
                   height: 3,
                 ),
                 Text(
-                  phone,
+                  email,
                   style: ktextSytle,
                 ),
                 const SizedBox(
-                  height: 1,
+                  height: 3,
                 ),
                 Text(
-                  email,
+                  phone,
                   style: ktextSytle,
                 ),
               ],
