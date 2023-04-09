@@ -11,12 +11,11 @@ class HelperServices {
     try {
       if (response.statusCode == 200) {
         var json = response.body;
-        print(response.body,);
         return userFromJson(json);
       }
     } catch (e) {
       print(e);
     }
-    throw Exception('failed to load user list');
+    throw ('Failed to load users list');
   }
 }

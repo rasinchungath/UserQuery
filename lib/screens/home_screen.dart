@@ -6,34 +6,14 @@ import '../constants/constants.dart';
 import '../models/user_model.dart';
 import '../utils/home_appbar.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  HomeScreen({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   List<User>? users;
-  bool isloaded = false;
 
-  @override
-  void initState() {
-    super.initState();
-    getData();
-  }
-
-  getData() async {
+  Future<List<User>?> fetchData() async {
     users = await HelperServices().getUserDetails();
-    if (users == null) {
-      setState(() {
-        isloaded = false;
-      });
-    } else {
-      setState(() {
-        isloaded = true;
-      });
-    }
+    return users;
   }
 
   @override
@@ -41,13 +21,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: homeAppBar('UserQuery'),
-        body: !isloaded
-            ? const Center(
-                child: CircularProgressIndicator(
-                  color: kPrimaryColor,
-                ),
-              )
-            : SingleChildScrollView(
+        body: FutureBuilder<List<User>?>(
+          future: fetchData(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              var userslist = snapshot.data;
+              return SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.only(
                     left: 15,
@@ -58,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${users!.length} Users found',
+                        '${userslist!.length} Users found',
                         style: ktextHeadstyle,
                       ),
                       const SizedBox(
@@ -67,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ListView.builder(
                         shrinkWrap: true,
                         physics: const ScrollPhysics(),
-                        itemCount: users!.length,
+                        itemCount: userslist.length,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 15),
@@ -76,15 +55,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) =>
-                                        UserDetailScreen(user: users![index]),
+                                    builder: (context) => UserDetailScreen(
+                                        user: userslist[index]),
                                   ),
                                 );
                               },
                               child: UserCard(
-                                name: users![index].name,
-                                phone: users![index].phone,
-                                email: users![index].email,
+                                name: userslist[index].name,
+                                phone: userslist[index].phone,
+                                email: userslist[index].email,
                               ),
                             ),
                           );
@@ -93,7 +72,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-              ),
+              );
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text('Error: ${snapshot.error}'),
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: kPrimaryColor,
+                ),
+              );
+            }
+          },
+        ),
       ),
     );
   }

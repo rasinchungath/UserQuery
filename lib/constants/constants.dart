@@ -14,7 +14,7 @@ const ktextSytle = TextStyle(
 const ktextTitleSytle = TextStyle(
   fontSize: 14,
   fontWeight: FontWeight.w500,
-  color:  kPrimaryColor,
+  color: kPrimaryColor,
 );
 
 const ktextHeadstyle = TextStyle(

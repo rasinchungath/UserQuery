@@ -42,7 +42,7 @@ class UserCard extends StatelessWidget {
             child: const Icon(
               Icons.account_box_rounded,
               size: 40,
-              color:  kPrimaryColor,
+              color: kPrimaryColor,
             ),
           ),
           const SizedBox(

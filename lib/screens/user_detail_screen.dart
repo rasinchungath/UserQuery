@@ -14,7 +14,6 @@ class UserDetailScreen extends StatelessWidget {
         appBar: homeAppBar('USER DETAILS'),
         body: SingleChildScrollView(
           child: Column(
-            
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
@@ -35,7 +34,7 @@ class UserDetailScreen extends StatelessWidget {
               Container(
                 height: 560,
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
+                  color: Color(0xFFF3F3F3),
                   borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(40),
                     topLeft: Radius.circular(40),
@@ -46,7 +45,6 @@ class UserDetailScreen extends StatelessWidget {
                   ),
                 ),
                 child: Column(
-                  
                   children: [
                     const SizedBox(
                       height: 35,
@@ -102,14 +100,10 @@ class UserDetailScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          '${user.address.street}, ',
-                          style:kDetailPageAdrsStyle
-                        ),
-                        Text(
-                          '${user.address.suite},',
-                          style: kDetailPageAdrsStyle
-                        ),
+                        Text('${user.address.street}, ',
+                            style: kDetailPageAdrsStyle),
+                        Text('${user.address.suite},',
+                            style: kDetailPageAdrsStyle),
                       ],
                     ),
                     const SizedBox(
@@ -118,14 +112,9 @@ class UserDetailScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          '${user.address.city}, ',
-                          style: kDetailPageAdrsStyle
-                        ),
-                        Text(
-                          user.address.zipcode,
-                          style: kDetailPageAdrsStyle
-                        ),
+                        Text('${user.address.city}, ',
+                            style: kDetailPageAdrsStyle),
+                        Text(user.address.zipcode, style: kDetailPageAdrsStyle),
                       ],
                     ),
                   ],
